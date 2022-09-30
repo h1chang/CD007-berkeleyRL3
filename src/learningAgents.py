@@ -50,6 +50,7 @@ class ValueEstimationAgent(Agent):
     #    Override These Functions      #
     ####################################
     def getQValue(self, state, action):
+        
         """
         Should return Q(state,action)
         """
