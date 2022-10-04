@@ -12,6 +12,7 @@
 # Pieter Abbeel (pabbeel@cs.berkeley.edu).
 
 
+from os import terminal_size
 from game import *
 from learningAgents import ReinforcementAgent
 from featureExtractors import *
@@ -88,7 +89,21 @@ class QLearningAgent(ReinforcementAgent):
           you should return None.
         """
         "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        # util.raiseNotDefined()
+
+        # TODO
+        # if state eh terminal_size 
+        #   return None
+
+        max_value = self.computeActionFromQValues(state)
+        max_actions = []
+        for action in self.getLegalActions(state):
+          if self.getQValue(state, action) == max_value:
+            # max_value = self.getQValue(state, action)
+            # atualizar max_action
+            max_actions.append(action)
+
+        return random.choice(max_actions)
 
     def getAction(self, state):
         """
