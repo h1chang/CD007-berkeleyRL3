@@ -68,12 +68,8 @@ class QLearningAgent(ReinforcementAgent):
         "*** YOUR CODE HERE ***"
         # util.raiseNotDefined()
         # se state eh terminal
-        if(len(self.getLegalActions(state)) == 0):
+        if len(self.getLegalActions(state)) == 0:
           return 0
-
-        # opção 1
-        return max([self.getQValue(state, action) for action in self.getLegalActions(state)])
-
         # opção 2
         # max_value = -1
         # for action in self.getLegalActions(state):
@@ -81,6 +77,9 @@ class QLearningAgent(ReinforcementAgent):
         #     max_value = self.getQValue(state, action)
         # return max_value
 
+        # opção 1
+        return max([self.getQValue(state, action) for action in self.getLegalActions(state)])
+     
 
     def computeActionFromQValues(self, state):
         """
@@ -93,7 +92,7 @@ class QLearningAgent(ReinforcementAgent):
 
         # TODO
         # se state eh terminal
-        if(len(self.getLegalActions(state)) == 0):
+        if len(self.getLegalActions(state)) == 0:
           return None
 
         max_value = self.computeActionFromQValues(state)
@@ -123,6 +122,17 @@ class QLearningAgent(ReinforcementAgent):
         "*** YOUR CODE HERE ***"
         # util.raiseNotDefined()
 
+        #  testa se não há ações válidas
+        if len(legalActions) == 0:
+          return None
+        
+        # acao aleatoria com prob epsilon
+        if util.flipCoin(self.epsilon):
+          return random.choice(legalActions)
+
+        # retorna a acao de maior valor
+        action = self.computeActionFromQValues(state)
+
         return action
 
     def update(self, state, action, nextState, reward):
@@ -138,7 +148,7 @@ class QLearningAgent(ReinforcementAgent):
         # util.raiseNotDefined()
         q = self.q[(state, action)]
         a = self.alpha
-        g = self.gamma
+        g = self.discount # gama
         r = reward
         V = self.computeActionFromQValues(nextState)
 
