@@ -67,9 +67,9 @@ class QLearningAgent(ReinforcementAgent):
         """
         "*** YOUR CODE HERE ***"
         # util.raiseNotDefined()
-        # TODO
-        # if state "eh terminal":
-        #   return 0
+        # se state eh terminal
+        if(len(self.getLegalActions(state)) == 0):
+          return 0
 
         # opção 1
         return max([self.getQValue(state, action) for action in self.getLegalActions(state)])
@@ -92,8 +92,9 @@ class QLearningAgent(ReinforcementAgent):
         # util.raiseNotDefined()
 
         # TODO
-        # if state eh terminal_size 
-        #   return None
+        # se state eh terminal
+        if(len(self.getLegalActions(state)) == 0):
+          return None
 
         max_value = self.computeActionFromQValues(state)
         max_actions = []
