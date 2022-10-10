@@ -65,10 +65,13 @@ def question3e():
     # If not possible, return 'NOT POSSIBLE'
 
 def question6():
+    # e = 1 => RETURN WAS -72.9, AVERAGE RETURNS FROM START STATE: -64.00879379999998
+    # e = 0 => RETURN WAS 0.9, AVERAGE RETURNS FROM START STATE: -4.373999999999998
     answerEpsilon = None
     answerLearningRate = None
-    return answerEpsilon, answerLearningRate
+    # return answerEpsilon, answerLearningRate
     # If not possible, return 'NOT POSSIBLE'
+    return "NOT POSSIBLE"
 
 if __name__ == '__main__':
     print('Answers to analysis questions:')
